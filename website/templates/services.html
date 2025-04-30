@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero bg-primary text-white py-5 mt-5">
+    <div class="container py-5">
+        <h1 class="display-4">Our Legal Services</h1>
+        <p class="lead">Comprehensive legal solutions tailored to your needs</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for area in practice_areas %}
+            <div class="col-md-6">
+                <div class="card h-100">
+                    {% if area.image %}
+                        <img src="{{ area.image.url }}" class="card-img-top" alt="{{ area.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="display-6 mb-3">{{ area.icon }}</div>
+                        <h3 class="card-title">{{ area.title }}</h3>
+                        <p class="card-text">{{ area.description }}</p>
+                        <a href="{% url 'website:contact' %}" class="btn btn-primary">Get Consultation</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

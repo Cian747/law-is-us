@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero bg-primary text-white py-5 mt-5">
+    <div class="container py-5">
+        <h1 class="display-4">Contact Us</h1>
+        <p class="lead">Get in touch with our legal team</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h2>Get In Touch</h2>
+                <p class="mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            {{ form.first_name.label_tag }}
+                            {{ form.first_name }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.last_name.label_tag }}
+                            {{ form.last_name }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.phone.label_tag }}
+                            {{ form.phone }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.service_type.label_tag }}
+                            {{ form.service_type }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.message.label_tag }}
+                            {{ form.message }}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Office Location</h3>
+                        <p>
+                            1234 Legal Avenue, Suite 500<br>
+                            New York, NY 10001
+                        </p>
+                        
+                        <h3>Contact Information</h3>
+                        <p>
+                            Phone: (555) 123-4567<br>
+                            Email: info@justicepartners.com
+                        </p>
+                        
+                        <h3>Office Hours</h3>
+                        <p>
+                            Monday - Friday: 9:00 AM - 6:00 PM<br>
+                            Saturday: By appointment<br>
+                            Sunday: Closed
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

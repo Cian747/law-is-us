@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero bg-primary text-white py-5 mt-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Dedicated Legal Excellence</h1>
+                <p class="lead mb-4">Our experienced attorneys deliver personalized legal solutions with integrity and commitment.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'website:contact' %}" class="btn btn-light btn-lg">Free Consultation</a>
+                    <a href="{% url 'website:services' %}" class="btn btn-outline-light btn-lg">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Practice Areas</h2>
+        <div class="row g-4">
+            {% for area in practice_areas %}
+            <div class="col-md-4">
+                <div class="card h-100">
+                    {% if area.image %}
+                        <img src="{{ area.image.url }}" class="card-img-top" alt="{{ area.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="display-6 mb-3">{{ area.icon }}</div>
+                        <h3 class="card-title">{{ area.title }}</h3>
+                        <p class="card-text">{{ area.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Attorneys</h2>
+        <div class="row g-4">
+            {% for attorney in attorneys %}
+            <div class="col-md-3">
+                <div class="card h-100">
+                    {% if attorney.image %}
+                        <img src="{{ attorney.image.url }}" class="card-img-top" alt="{{ attorney.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ attorney.name }}</h5>
+                        <p class="card-text text-primary">{{ attorney.role }}</p>
+                        <p class="card-text">{{ attorney.bio }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Client Testimonials</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for testimonial in testimonials %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p class="lead mb-4">"{{ testimonial.text }}"</p>
+                                    <footer class="blockquote-footer">
+                                        {{ testimonial.author }} <cite>{{ testimonial.role }}</cite>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
